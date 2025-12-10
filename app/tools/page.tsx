@@ -31,9 +31,22 @@ import {
     Heart,
     Link,
     MailIcon,
+    Sparkles,
 } from "lucide-react"
 
 const tools = [
+    {
+        name: "Landing Page Crafter",
+        description: "Craft amazing prompts to generate highly premium landing pages with best practices and modern design principles.",
+        category: "Design",
+        status: "Live",
+        usage: 2340,
+        lastUpdated: "1 day ago",
+        url: "/tools/landing-page-crafter",
+        icon: Sparkles,
+        features: ["Premium prompts", "Best practices", "Design principles", "Modern templates"],
+        tech: ["Next.js", "AI Integration", "Design Systems"],
+    },
     {
         name: "Color Palette Generator",
         description: "Generate beautiful color palettes with complementary and analogous colors. Perfect for design projects.",
@@ -109,7 +122,7 @@ const tools = [
 ]
 
 const categories = [
-    { name: "Design", count: 1, icon: Palette },
+    { name: "Design", count: 2, icon: Palette },
     { name: "Text", count: 1, icon: FileText },
     { name: "Security", count: 2, icon: Shield },
     { name: "Utility", count: 2, icon: Wrench },
@@ -138,11 +151,11 @@ export default function ToolsPage() {
                 <Card className="mb-6 p-4 bg-transparent bg-gradient-to-br from-amber-900/20 via-orange-900/15 to-emerald-900/20 border border-amber-500/30 backdrop-blur-md">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                         <div>
-                            <div className="text-2xl font-bold text-amber-300 mb-1">6</div>
+                            <div className="text-2xl font-bold text-amber-300 mb-1">7</div>
                             <div className="text-xs text-zinc-400">Available Tools</div>
                         </div>
                         <div>
-                            <div className="text-2xl font-bold text-emerald-300 mb-1">7.1K+</div>
+                            <div className="text-2xl font-bold text-emerald-300 mb-1">9.4K+</div>
                             <div className="text-xs text-zinc-400">Total Uses</div>
                         </div>
                         <div>

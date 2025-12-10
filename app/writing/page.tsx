@@ -114,7 +114,7 @@ export default function WritingPage() {
         {/* Featured Post */}
         {featuredPost && selectedCategory === "All" && (
           <Link href={`/writing/${featuredPost.slug}`}>
-            <Card className="mb-4 p-4 bg-transparent bg-zinc-900/60 border border-zinc-700/50 backdrop-blur-sm hover:border-zinc-600 transition-all duration-200 group cursor-pointer">
+            <Card className="mb-4 p-3 bg-transparent bg-zinc-900/60 border border-zinc-700/50 backdrop-blur-sm hover:border-zinc-600 transition-all duration-200 group cursor-pointer">
               <div className="flex items-start justify-between mb-2">
                 <Badge className="text-xs bg-white text-black">Featured</Badge>
                 <div className="flex items-center gap-3 text-xs text-zinc-400">
@@ -129,11 +129,11 @@ export default function WritingPage() {
                 </div>
               </div>
 
-              <h2 className="text-lg font-semibold mb-2 text-white group-hover:text-zinc-200 transition-colors">
+              <h2 className="text-base font-semibold mb-2 text-white group-hover:text-zinc-200 transition-colors">
                 {featuredPost.title}
               </h2>
 
-              <p className="text-zinc-400 text-sm mb-3 leading-relaxed">{featuredPost.excerpt}</p>
+              <p className="text-zinc-400 text-xs mb-3 leading-relaxed line-clamp-2">{featuredPost.excerpt}</p>
 
               <div className="flex items-center justify-between">
                 <div className="flex flex-wrap gap-1">
@@ -164,7 +164,7 @@ export default function WritingPage() {
         <div>
           {regularPosts.map((post) => (
             <Link key={post.id} href={`/writing/${post.slug}`}>
-              <Card className=" p-3 mb-4 bg-transparent bg-zinc-900/40 backdrop-blur-sm border border-zinc-800/50 hover:border-zinc-700 transition-all duration-200 group cursor-pointer">
+              <Card className="p-3 mb-3 bg-transparent bg-zinc-900/40 backdrop-blur-sm border border-zinc-800/50 hover:border-zinc-700 transition-all duration-200 group cursor-pointer">
                 <div className="flex items-center justify-between mb-2 text-xs text-zinc-500">
                   <Badge variant="outline" className="text-xs border-zinc-700 text-zinc-400 bg-transparent px-2 py-0.5">
                     {post.category}
@@ -181,11 +181,11 @@ export default function WritingPage() {
                   </div>
                 </div>
 
-                <h3 className="text-base font-medium mb-1 text-white group-hover:text-zinc-200 transition-colors">
+                <h3 className="text-sm font-medium mb-1 text-white group-hover:text-zinc-200 transition-colors">
                   {post.title}
                 </h3>
 
-                <p className="text-zinc-400 text-sm mb-2 leading-relaxed line-clamp-2">{post.excerpt}</p>
+                <p className="text-zinc-400 text-xs mb-2 leading-relaxed line-clamp-2">{post.excerpt}</p>
 
                 <div className="flex items-center justify-between">
                   <div className="flex flex-wrap gap-1">

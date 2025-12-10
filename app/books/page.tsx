@@ -5,121 +5,1669 @@ import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Search, Star, Calendar, BookOpen, ExternalLink, Filter } from "lucide-react"
+import { Search, BookOpen, ExternalLink, Filter, BookOpen as BookIcon } from "lucide-react"
+import Link from "next/link"
 
 const books = [
   {
     id: 1,
-    title: "The Design of Everyday Things",
-    author: "Don Norman",
-    description: "A powerful primer on how—and why—some products satisfy customers while others only frustrate them.",
-    category: "Design",
-    rating: 5,
+    title: "Can't Hurt Me: Master Your Mind and Defy the Odds",
+    author: "David Goggins",
+    description: "This book details the incredible life story of David Goggins, who transformed himself from a depressed, overweight young man into a U.S. Armed Forces icon and top endurance athlete.",
+    category: "Self-Help",
     status: "Read",
-    dateRead: "2024-01-15",
-    cover: "/book-design-everyday-things.png",
-    notes: "Essential reading for anyone in product design. Norman's principles of good design are timeless.",
-    featured: true,
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "cant-hurt-me",
+    summary: "It introduces his '40% Rule,' arguing that most people give up after using only 40% of their capability, and teaches you how to push past pain to reach your full potential.",
   },
   {
     id: 2,
-    title: "Atomic Habits",
-    author: "James Clear",
-    description: "An easy & proven way to build good habits & break bad ones.",
-    category: "Productivity",
-    rating: 5,
-    status: "Read",
-    dateRead: "2024-01-10",
-    cover: "/book-atomic-habits.png",
-    notes: "Practical framework for building habits. The 1% better concept is powerful.",
-    featured: false,
+    title: "Be Seen: Find Your Voice, Build Your Brand, Live Your Dream",
+    author: "Jenn T. Grace",
+    description: "A guide for entrepreneurs on how to build a powerful and authentic personal brand that resonates with their ideal audience.",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "be-seen",
+    summary: "It provides a strategic framework for increasing visibility and influence by clarifying your message and showing up consistently where it matters most.",
   },
   {
     id: 3,
-    title: "The Lean Startup",
-    author: "Eric Ries",
-    description: "How today's entrepreneurs use continuous innovation to create radically successful businesses.",
+    title: "Quiet: The Power of Introverts in a World That Can't Stop Talking",
+    author: "Susan Cain",
+    description: "Explores the psychological and cultural biases against introverts and highlights their unique strengths, such as creativity, deep thinking, and leadership.",
+    category: "Psychology",
+    status: "Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "quiet",
+    summary: "It argues that society dramatically undervalues introverts and shows how they can thrive by embracing their nature.",
+  },
+  {
+    id: 4,
+    title: "The Unfair Advantage: How You Already Have What It Takes to Succeed",
+    author: "Ash Ali & Hasan Kubba",
+    description: "Argues that success isn't just about hard work but also about leveraging your unique, 'unfair' advantages in life.",
     category: "Business",
-    rating: 4,
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "the-unfair-advantage",
+    summary: "Introduces the MILES framework (Money, Intelligence, Location, Education, Status) to help you identify and utilize your personal circumstances to get ahead.",
+  },
+  {
+    id: 5,
+    title: "The Ultimate Copywriting Guide for Beginners to Advanced",
+    author: "Neil Hoechlin",
+    description: "A comprehensive manual for writing persuasive copy that sells products and services effectively.",
+    category: "Marketing",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "ultimate-copywriting-guide",
+    summary: "It covers fundamental principles, advanced techniques, and psychological triggers to help marketers and business owners craft compelling messages.",
+  },
+  {
+    id: 6,
+    title: "Reality Is Not What It Seems: The Journey to Quantum Gravity",
+    author: "Carlo Rovelli",
+    description: "Takes readers on a journey through the history of physics, from ancient philosophers to modern theories of quantum gravity.",
+    category: "Science",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "reality-is-not-what-it-seems",
+    summary: "Explains complex concepts like spacetime, black holes, and the granular nature of reality in an accessible and poetic way.",
+  },
+  {
+    id: 7,
+    title: "The Untethered Soul: The Journey Beyond Yourself",
+    author: "Michael A. Singer",
+    description: "A spiritual guide exploring the nature of consciousness and how to free yourself from the habitual thoughts and emotions that limit your potential.",
+    category: "Spirituality",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "untethered-soul",
+    summary: "Teaches you how to observe your inner dialogue and find lasting peace and happiness by tapping into your true, conscious self.",
+  },
+  {
+    id: 8,
+    title: "The Beginning of Infinity: Explanations That Transform the World",
+    author: "David Deutsch",
+    description: "Presents a profound argument that human progress is limitless and driven by the creation of good explanations.",
+    category: "Science",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "beginning-of-infinity",
+    summary: "Champions optimism and the power of reason, suggesting that all problems are solvable through the growth of knowledge.",
+  },
+  {
+    id: 9,
+    title: "Six Easy Pieces: Essentials of Physics Explained by Its Most Brilliant Teacher",
+    author: "Richard P. Feynman",
+    description: "A collection of the most accessible chapters from Richard Feynman's famous lectures on physics, intended for a general audience.",
+    category: "Science",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "six-easy-pieces",
+    summary: "Covers fundamental concepts like atoms, energy, quantum behavior, and the relationship between physics and other sciences without complex mathematics.",
+  },
+  {
+    id: 10,
+    title: "$100M Offers: How To Make Offers So Good People Feel Stupid Saying No",
+    author: "Alex Hormozi",
+    description: "Provides a step-by-step framework for creating irresistible offers that dramatically increase sales and business growth.",
+    category: "Business",
+    status: "Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "100m-offers",
+    summary: "Focuses on value creation, pricing, guarantees, and scarcity to construct deals that customers eagerly accept.",
+  },
+  {
+    id: 11,
+    title: "$100M Leads: How to Get Strangers To Want To Buy Your Stuff",
+    author: "Alex Hormozi",
+    description: "A follow-up to his previous book, this guide focuses on lead generation strategies for acquiring a massive volume of customers.",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "100m-leads",
+    summary: "Details both paid and organic methods for attracting attention and turning strangers into interested buyers.",
+  },
+  {
+    id: 12,
+    title: "The Millionaire Fastlane: Crack the Code to Wealth and Live Rich for a Lifetime",
+    author: "MJ DeMarco",
+    description: "Challenges the traditional 'slow lane' path to wealth and offers a 'fastlane' alternative based on building scalable businesses.",
+    category: "Finance",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "millionaire-fastlane",
+    summary: "Provides a blueprint for creating passive income systems that can lead to extraordinary wealth at a young age.",
+  },
+  {
+    id: 13,
+    title: "The Personal MBA: Master the Art of Business",
+    author: "Josh Kaufman",
+    description: "Distills the essential principles of business—from marketing and sales to finance and operations—into simple, practical mental models.",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "personal-mba",
+    summary: "Serves as a comprehensive business education, arguing that you can learn everything you need to succeed without attending business school.",
+  },
+  {
+    id: 14,
+    title: "Dotcom Secrets: The Underground Playbook for Growing Your Company Online",
+    author: "Russell Brunson",
+    description: "Reveals the marketing funnels and sales scripts that successful online businesses use to attract customers and increase conversions.",
+    category: "Marketing",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "dotcom-secrets",
+    summary: "Provides a tactical playbook for structuring your website and marketing campaigns to guide customers through a profitable sales process.",
+  },
+  {
+    id: 15,
+    title: "Thinking, Fast and Slow",
+    author: "Daniel Kahneman",
+    description: "Nobel laureate Daniel Kahneman explains the two systems that drive human thought: System 1 (fast, intuitive, and emotional) and System 2 (slow, deliberative, and logical).",
+    category: "Psychology",
+    status: "Read",
+    dateRead: "",
+    cover: "/book-thinking-fast-slow.png",
+    notes: "",
+    slug: "thinking-fast-and-slow",
+    summary: "The book explores cognitive biases and mental shortcuts, revealing how they affect our judgment and decisions.",
+  },
+  {
+    id: 16,
+    title: "The Hard Thing About Hard Things: Building a Business When There Are No Easy Answers",
+    author: "Ben Horowitz",
+    description: "Drawing from his experience as a top Silicon Valley entrepreneur and investor, Horowitz offers brutally honest advice on the toughest problems business leaders face.",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "hard-thing-about-hard-things",
+    summary: "Covers difficult topics like firing friends, managing a wartime CEO mentality, and navigating crises with practical wisdom.",
+  },
+  {
+    id: 17,
+    title: "Digital Marketing All-In-One For Dummies",
+    author: "Ryan Deiss & Russ Henneberry",
+    description: "A comprehensive reference guide that covers all major disciplines of digital marketing, from SEO and content marketing to social media and analytics.",
+    category: "Marketing",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "digital-marketing-all-in-one",
+    summary: "It's designed as a practical starting point for anyone looking to build a complete digital marketing strategy.",
+  },
+  {
+    id: 18,
+    title: "12 Rules for Life: An Antidote to Chaos",
+    author: "Jordan B. Peterson",
+    description: "Combines psychology, philosophy, and religion to offer 12 profound principles for living a meaningful life.",
+    category: "Self-Help",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "12-rules-for-life",
+    summary: "Encourages readers to take personal responsibility, pursue what is meaningful, and bring order to the chaos of existence.",
+  },
+  {
+    id: 19,
+    title: "So Good They Can't Ignore You: Why Skills Trump Passion in the Quest for Work You Love",
+    author: "Cal Newport",
+    description: "Argues that 'follow your passion' is bad advice and that a fulfilling career comes from developing rare and valuable skills.",
+    category: "Career",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "so-good-they-cant-ignore-you",
+    summary: "Advocates for a craftsman mindset, where you focus on becoming exceptionally good at what you do, which in turn generates passion and career capital.",
+  },
+  {
+    id: 20,
+    title: "The Lean Startup: How Today's Entrepreneurs Use Continuous Innovation to Create Radically Successful Businesses",
+    author: "Eric Ries",
+    description: "Introduces a scientific methodology for building and managing startups that shortens product development cycles and reduces waste.",
+    category: "Business",
     status: "Read",
     dateRead: "2024-01-05",
     cover: "/book-lean-startup.png",
     notes: "Great introduction to lean methodology and MVP thinking.",
-    featured: false,
+    slug: "lean-startup",
+    summary: "Champions the 'Build-Measure-Learn' feedback loop, where businesses rapidly test their vision and adapt based on customer feedback.",
   },
   {
-    id: 4,
-    title: "Clean Code",
-    author: "Robert C. Martin",
-    description: "A handbook of agile software craftsmanship.",
-    category: "Development",
-    rating: 5,
-    status: "Read",
-    dateRead: "2023-12-28",
-    cover: "/book-clean-code.png",
-    notes: "Must-read for any developer. Changed how I think about writing code.",
-    featured: false,
+    id: 21,
+    title: "Skin in the Game: Hidden Asymmetries in Daily Life",
+    author: "Nassim Nicholas Taleb",
+    description: "Taleb argues that you should ignore advice from people who don't have 'skin in the game'—meaning they don't bear the consequences of their recommendations.",
+    category: "Philosophy",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "skin-in-the-game",
+    summary: "Explores the importance of risk, responsibility, and symmetry in everything from finance to ethics.",
   },
   {
-    id: 5,
-    title: "Zero to One",
-    author: "Peter Thiel",
-    description: "Notes on startups, or how to build the future.",
+    id: 22,
+    title: "The Courage to Be Disliked",
+    author: "Ichiro Kishimi and Fumitake Koga",
+    description: "Based on the theories of Alfred Adler, this book is a dialogue between a philosopher and a young man exploring how to find happiness and freedom.",
+    category: "Philosophy",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "courage-to-be-disliked",
+    summary: "Teaches that we are not defined by our past experiences but have the power to choose our own future by changing our perspective.",
+  },
+  {
+    id: 23,
+    title: "Extreme Ownership: How U.S. Navy SEALs Lead and Win",
+    author: "Jocko Willink and Leif Babin",
+    description: "Translates combat leadership principles from the Navy SEALs into practical lessons for the business world.",
+    category: "Leadership",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "extreme-ownership",
+    summary: "The core idea is 'Extreme Ownership,' where leaders must take absolute responsibility for everything in their world to achieve success.",
+  },
+  {
+    id: 24,
+    title: "The True Believer: Thoughts on the Nature of Mass Movements",
+    author: "Eric Hoffer",
+    description: "Analyzes the psychological motivations behind mass movements, whether religious, political, or social.",
+    category: "Sociology",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "true-believer",
+    summary: "Hoffer argues that these movements attract the frustrated and disenfranchised who are looking for a new sense of identity and purpose.",
+  },
+  {
+    id: 25,
+    title: "Only the Paranoid Survive: How to Exploit the Crisis Points That Challenge Every Company",
+    author: "Andrew S. Grove",
+    description: "The former CEO of Intel explains how to navigate 'Strategic Inflection Points'—massive shifts in technology or competition that can make or break a company.",
     category: "Business",
-    rating: 4,
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "only-the-paranoid-survive",
+    summary: "Provides a framework for leaders to recognize these threats and turn them into opportunities for immense growth.",
+  },
+  {
+    id: 26,
+    title: "The Rational Optimist: How Prosperity Evolves",
+    author: "Matt Ridley",
+    description: "Presents a powerful argument that human life has consistently improved over centuries and will continue to do so.",
+    category: "Economics",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "rational-optimist",
+    summary: "Credits this progress to the uniquely human habit of exchanging ideas and specializing, which fuels innovation and prosperity.",
+  },
+  {
+    id: 27,
+    title: "Economics in One Lesson: The Shortest and Surest Way to Understand Basic Economics",
+    author: "Henry Hazlitt",
+    description: "Simplifies the principles of economics down to a single lesson: one must consider the long-term effects of any policy on all groups, not just the immediate effects on one group.",
+    category: "Economics",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "economics-in-one-lesson",
+    summary: "Uses this lens to debunk common economic fallacies about government spending, taxes, and regulation.",
+  },
+  {
+    id: 28,
+    title: "The End of History and the Last Man",
+    author: "Francis Fukuyama",
+    description: "Argues that the end of the Cold War marked the endpoint of humanity's sociocultural evolution.",
+    category: "History",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "end-of-history",
+    summary: "Suggests that Western liberal democracy may be the final form of human government, representing the 'end of history.'",
+  },
+  {
+    id: 29,
+    title: "The Richest Man in Babylon",
+    author: "George S. Clason",
+    description: "Teaches timeless principles of personal finance through a series of parables set in ancient Babylon.",
+    category: "Finance",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "richest-man-in-babylon",
+    summary: "Provides simple yet profound lessons on saving, investing, and getting out of debt, framed in an engaging and easy-to-read format.",
+  },
+  {
+    id: 30,
+    title: "The Psychology of Money: Timeless lessons on wealth, greed, and happiness",
+    author: "Morgan Housel",
+    description: "Explores the idea that financial success is less about complex formulas and more about human behavior and psychology.",
+    category: "Finance",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "psychology-of-money",
+    summary: "Reveals how your personal biases and emotional state are the biggest determinants of your financial outcomes.",
+  },
+  {
+    id: 31,
+    title: "Influence: The Psychology of Persuasion",
+    author: "Robert B. Cialdini",
+    description: "Explains the six universal principles of persuasion (Reciprocity, Commitment, Social Proof, Liking, Authority, and Scarcity).",
+    category: "Psychology",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "influence",
+    summary: "Teaches you how to recognize and apply these psychological triggers ethically, as well as how to defend yourself against them.",
+  },
+  {
+    id: 32,
+    title: "Steal Like an Artist: 10 Things Nobody Told You About Being Creative",
+    author: "Austin Kleon",
+    description: "A short, inspiring manifesto for creativity in the digital age, arguing that nothing is truly original.",
+    category: "Creativity",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "steal-like-an-artist",
+    summary: "Encourages readers to embrace influence, collect good ideas, and remix them to create their own unique work.",
+  },
+  {
+    id: 33,
+    title: "Economics for Dummies",
+    author: "Sean Masaki Flynn",
+    description: "An introductory guide to the core concepts of both microeconomics and macroeconomics.",
+    category: "Economics",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "economics-for-dummies",
+    summary: "Breaks down complex topics like supply and demand, GDP, inflation, and government policy into simple, understandable terms.",
+  },
+  {
+    id: 34,
+    title: "As a Man Thinketh",
+    author: "James Allen",
+    description: "This short philosophical book argues that our thoughts shape our reality and that we are the masters of our own destiny.",
+    category: "Philosophy",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "as-a-man-thinketh",
+    summary: "Posits that by cultivating positive and purposeful thoughts, we can transform our character, circumstances, and overall life experience.",
+  },
+  {
+    id: 35,
+    title: "Predictable Revenue",
+    author: "Aaron Ross & Marylou Tyler",
+    description: "Outlines the 'Cold Calling 2.0' outbound sales process that helped Salesforce add $100 million in recurring revenue.",
+    category: "Sales",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "predictable-revenue",
+    summary: "Provides a system for building a scalable sales machine that generates a consistent and predictable stream of new business without relying on traditional cold calls.",
+  },
+  {
+    id: 36,
+    title: "Principles: Life and Work",
+    author: "Ray Dalio",
+    description: "The founder of the world's largest hedge fund shares the unconventional principles that guided his success in life and business.",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "principles",
+    summary: "Provides a systematic approach to decision-making based on radical truth and radical transparency to achieve meaningful work and relationships.",
+  },
+  {
+    id: 37,
+    title: "Sapiens: A Brief History of Humankind",
+    author: "Yuval Noah Harari",
+    description: "Provides a sweeping overview of the entire history of Homo sapiens, from our origins as hunter-gatherers to our present-day global society.",
+    category: "History",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "sapiens",
+    summary: "Explores how our species came to dominate the planet, largely thanks to our unique ability to believe in shared fictions like money, laws, and gods.",
+  },
+  {
+    id: 38,
+    title: "Million Dollar Weekend",
+    author: "Noah Kagan",
+    description: "Offers a practical, high-speed framework for starting a business in just 48 hours with minimal risk.",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "million-dollar-weekend",
+    summary: "Focuses on validating an idea, getting the first customer, and asking for money quickly, challenging the notion that you need a lot of time and capital to launch.",
+  },
+  {
+    id: 39,
+    title: "The 80/20 Principle: The Secret to Achieving More with Less",
+    author: "Richard Koch",
+    description: "Explains the Pareto principle, which states that roughly 80% of results come from 20% of the effort.",
+    category: "Productivity",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "80-20-principle",
+    summary: "Teaches you how to apply this counter-intuitive concept to your work and personal life to identify and focus on the few things that truly matter.",
+  },
+  {
+    id: 40,
+    title: "Atomic Habits: An Easy & Proven Way to Build Good Habits & Break Bad Ones",
+    author: "James Clear",
+    description: "Presents a practical framework for improving every day by focusing on small, incremental changes (atomic habits).",
+    category: "Productivity",
+    status: "Read",
+    dateRead: "2024-01-10",
+    cover: "/book-atomic-habits.png",
+    notes: "Practical framework for building habits. The 1% better concept is powerful.",
+    slug: "atomic-habits",
+    summary: "Explains the four laws of behavior change (Make it obvious, attractive, easy, and satisfying) to help you build good habits and break bad ones.",
+  },
+  {
+    id: 41,
+    title: "This Is Marketing: You Can't Be Seen Until You Learn to See",
+    author: "Seth Godin",
+    description: "Godin redefines modern marketing as the generous act of helping others solve their problems.",
+    category: "Marketing",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "this-is-marketing",
+    summary: "He argues against spammy, mass-market tactics and advocates for building trust and connection with a specific audience by telling a story that resonates.",
+  },
+  {
+    id: 42,
+    title: "Outliers: The Story of Success",
+    author: "Malcolm Gladwell",
+    description: "Explores the factors that contribute to high levels of success, arguing that it's not just about individual talent.",
+    category: "Psychology",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "outliers",
+    summary: "Examines the role of culture, family, generation, and unique opportunities in shaping the careers of the world's most successful people.",
+  },
+  {
+    id: 43,
+    title: "Talking to Strangers: What We Should Know about the People We Don't Know",
+    author: "Malcolm Gladwell",
+    description: "Examines why we are so bad at understanding strangers and the common mistakes we make when interacting with them.",
+    category: "Psychology",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "talking-to-strangers",
+    summary: "Explores the concepts of 'default to truth' and 'transparency' to explain why our interactions with others often go wrong.",
+  },
+  {
+    id: 44,
+    title: "The Phoenix Project: A Novel About IT, DevOps, and Helping Your Business Win",
+    author: "Gene Kim, Kevin Behr, and George Spafford",
+    description: "Teaches the principles of DevOps through an engaging fictional story about an IT manager tasked with saving a failing, mission-critical project.",
+    category: "Development",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "phoenix-project",
+    summary: "Illustrates how applying manufacturing theories, like the Theory of Constraints, can transform IT operations and improve business outcomes.",
+  },
+  {
+    id: 45,
+    title: "Hooked: How to Build Habit-Forming Products",
+    author: "Nir Eyal",
+    description: "Explains the 'Hook Model,' a four-step process (Trigger, Action, Variable Reward, Investment) that successful companies use to build products that users engage with habitually.",
+    category: "Product",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "hooked",
+    summary: "Provides a practical guide for creating products that people love and use again and again without costly advertising.",
+  },
+  {
+    id: 46,
+    title: "Indistractable: How to Control Your Attention and Choose Your Life",
+    author: "Nir Eyal",
+    description: "Tackles the problem of modern distraction and provides a four-part framework for reclaiming your focus and attention.",
+    category: "Productivity",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "indistractable",
+    summary: "Teaches you how to master internal triggers, make time for traction, hack back external triggers, and use pacts to prevent distraction.",
+  },
+  {
+    id: 47,
+    title: "Blink: The Power of Thinking Without Thinking",
+    author: "Malcolm Gladwell",
+    description: "Explores the phenomenon of 'thin-slicing'—our mind's ability to make rapid, accurate judgments based on very little information.",
+    category: "Psychology",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "blink",
+    summary: "Examines the power and pitfalls of these snap decisions and when we should trust our instincts.",
+  },
+  {
+    id: 48,
+    title: "Contagious: Why Things Catch On",
+    author: "Jonah Berger",
+    description: "Breaks down the science behind why certain ideas and products become popular and go viral.",
+    category: "Marketing",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "contagious",
+    summary: "Outlines six key principles (Social Currency, Triggers, Emotion, Public, Practical Value, and Stories) that make content contagious.",
+  },
+  {
+    id: 49,
+    title: "Building a StoryBrand: Clarify Your Message So Customers Will Listen",
+    author: "Donald Miller",
+    description: "Introduces a seven-part framework (the SB7 Framework) for creating a clear and compelling brand message by treating your customer as the hero of a story.",
+    category: "Marketing",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "building-a-storybrand",
+    summary: "Teaches businesses how to simplify their marketing so that customers understand what they offer and why it matters.",
+  },
+  {
+    id: 50,
+    title: "Getting to Yes: Negotiating Agreement Without Giving In",
+    author: "Roger Fisher and William Ury",
+    description: "Presents a method of 'principled negotiation,' which focuses on interests, not positions.",
+    category: "Negotiation",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "getting-to-yes",
+    summary: "Provides a step-by-step strategy for reaching mutually acceptable agreements in any kind of conflict.",
+  },
+  {
+    id: 51,
+    title: "Big Magic: Creative Living Beyond Fear",
+    author: "Elizabeth Gilbert",
+    description: "An inspiring guide to living a creative life, encouraging readers to embrace curiosity and let go of fear.",
+    category: "Creativity",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "big-magic",
+    summary: "Explores the nature of inspiration and offers practical advice on how to pursue your creative passions with joy and courage.",
+  },
+  {
+    id: 52,
+    title: "How to Win Friends and Influence People",
+    author: "Dale Carnegie",
+    description: "A timeless and foundational guide to improving your social skills and interpersonal relationships.",
+    category: "Self-Help",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "how-to-win-friends",
+    summary: "Provides simple, actionable principles for handling people, making them like you, winning them to your way of thinking, and leading effectively.",
+  },
+  {
+    id: 53,
+    title: "The Goal: A Process of Ongoing Improvement",
+    author: "Eliyahu M. Goldratt and Jeff Cox",
+    description: "Explains the Theory of Constraints, a management philosophy for identifying and resolving bottlenecks to improve efficiency.",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "the-goal",
+    summary: "Tells the story of a plant manager who must save his factory by learning to think logically and systematically about his operational problems.",
+  },
+  {
+    id: 54,
+    title: "To Sell Is Human: The Surprising Truth About Moving Others",
+    author: "Daniel H. Pink",
+    description: "Argues that everyone is in sales, whether we're selling a product, an idea, or ourselves.",
+    category: "Sales",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "to-sell-is-human",
+    summary: "Offers a modern perspective on the art and science of persuasion, introducing new techniques like the 'Attunement, Buoyancy, and Clarity' framework.",
+  },
+  {
+    id: 55,
+    title: "The 5 AM Club: Own Your Morning. Elevate Your Life.",
+    author: "Robin Sharma",
+    description: "Presents a formula for peak productivity and well-being based on a revolutionary morning routine.",
+    category: "Productivity",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "5am-club",
+    summary: "Through a fictional story, it teaches the '20/20/20 Formula' for spending the first hour of your day on exercise, reflection, and learning.",
+  },
+  {
+    id: 56,
+    title: "Digital Minimalism: Choosing a Focused Life in a Noisy World",
+    author: "Cal Newport",
+    description: "Provides a compelling philosophy and practical guide for using technology more intentionally in our increasingly cluttered digital lives.",
+    category: "Productivity",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "digital-minimalism",
+    summary: "Advocates for a minimalist approach where you focus only on a small number of carefully selected online activities that support your values.",
+  },
+  {
+    id: 57,
+    title: "Losing My Virginity: How I Survived, Had Fun, and Made a Fortune Doing Business My Way",
+    author: "Richard Branson",
+    description: "The autobiography of Richard Branson, the adventurous founder of the Virgin Group.",
+    category: "Biography",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "losing-my-virginity",
+    summary: "Chronicles his life and business career, highlighting his unique, fun-loving approach to entrepreneurship and his philosophy of 'Screw it, let's do it.'",
+  },
+  {
+    id: 58,
+    title: "The Everything Store: Jeff Bezos and the Age of Amazon",
+    author: "Brad Stone",
+    description: "Provides a deeply reported, inside look at the rise of Amazon and its driven, brilliant founder, Jeff Bezos.",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "everything-store",
+    summary: "Chronicles the company's relentless ambition, its culture of innovation, and its journey to become one of the most powerful forces in the global economy.",
+  },
+  {
+    id: 59,
+    title: "The Pumpkin Plan: A Simple Strategy to Grow a Remarkable Business in Any Field",
+    author: "Mike Michalowicz",
+    description: "Uses the analogy of prize-winning pumpkin farmers to teach entrepreneurs how to grow extraordinary businesses.",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "pumpkin-plan",
+    summary: "The core strategy involves identifying and focusing all your energy on your most promising clients (your 'giant pumpkins') while weeding out the rest.",
+  },
+  {
+    id: 60,
+    title: "Blitzscaling: The Lightning-Fast Path to Building Massively Valuable Companies",
+    author: "Reid Hoffman and Chris Yeh",
+    description: "Describes 'blitzscaling,' a specific set of strategies for growing a company at a dizzying pace to achieve market dominance.",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "blitzscaling",
+    summary: "It's a high-risk, high-reward approach for navigating the uncertainty of rapidly scaling a business to capture a winner-take-all market.",
+  },
+  {
+    id: 61,
+    title: "The 22 Immutable Laws of Marketing: Violate Them at Your Own Risk!",
+    author: "Al Ries and Jack Trout",
+    description: "Presents 22 fundamental and timeless rules for success in marketing.",
+    category: "Marketing",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "22-immutable-laws-of-marketing",
+    summary: "Covers principles like the Law of Leadership (it's better to be first than it is to be better) and the Law of the Category (if you can't be first in a category, set up a new one you can be first in).",
+  },
+  {
+    id: 62,
+    title: "Zero to One: Notes on Startups, or How to Build the Future",
+    author: "Peter Thiel with Blake Masters",
+    description: "Argues that true innovation comes from creating something entirely new (going from 0 to 1), not from copying what already works (going from 1 to n).",
+    category: "Business",
     status: "Currently Reading",
     dateRead: "",
     cover: "/book-zero-to-one.png",
     notes: "Interesting perspective on monopolies and innovation.",
-    featured: false,
+    slug: "zero-to-one",
+    summary: "Thiel challenges entrepreneurs to think for themselves and build unique companies that create new value for the world.",
   },
   {
-    id: 6,
-    title: "Thinking, Fast and Slow",
-    author: "Daniel Kahneman",
-    description: "A groundbreaking tour of the mind and explains the two systems that drive the way we think.",
-    category: "Psychology",
-    rating: 4,
+    id: 63,
+    title: "Start with Why: How Great Leaders Inspire Everyone to Take Action",
+    author: "Simon Sinek",
+    description: "Presents the idea of 'The Golden Circle,' a framework that explains why some organizations are more innovative and influential than others.",
+    category: "Leadership",
     status: "Want to Read",
     dateRead: "",
-    cover: "/book-thinking-fast-slow.png",
+    cover: "",
     notes: "",
-    featured: false,
+    slug: "start-with-why",
+    summary: "Sinek argues that great leaders and companies start by communicating their 'Why' (their purpose or belief) before explaining their 'How' or 'What.'",
+  },
+  {
+    id: 64,
+    title: "The $100 Startup: Reinvent the Way You Make a Living, Do What You Love, and Create a New Future",
+    author: "Chris Guillebeau",
+    description: "Shares stories of 1,500 ordinary people who built successful businesses with a modest investment (often $100 or less).",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "100-startup",
+    summary: "Provides a practical guide for turning a passion into a profitable microbusiness without needing an MBA or significant funding.",
+  },
+  {
+    id: 65,
+    title: "Built to Last: Successful Habits of Visionary Companies",
+    author: "Jim Collins and Jerry I. Porras",
+    description: "Based on a six-year research project that identifies what makes truly exceptional and long-lasting companies different from their competitors.",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "built-to-last",
+    summary: "Debunks common business myths and reveals the timeless principles that allow 'visionary' companies to thrive for decades.",
+  },
+  {
+    id: 66,
+    title: "The Startup Owner's Manual: The Step-By-Step Guide for Building a Great Company",
+    author: "Steve Blank and Bob Dorf",
+    description: "A highly detailed, tactical guide to the 'Customer Development' process, a core component of the Lean Startup methodology.",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "startup-owners-manual",
+    summary: "Provides a scientific, step-by-step approach for finding a scalable, repeatable business model and achieving product-market fit.",
+  },
+  {
+    id: 67,
+    title: "Blue Ocean Strategy: How to Create Uncontested Market Space and Make the Competition Irrelevant",
+    author: "W. Chan Kim and Renée Mauborgne",
+    description: "Argues that lasting success comes not from battling competitors in existing markets ('red oceans') but from creating new, uncontested market spaces ('blue oceans').",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "blue-ocean-strategy",
+    summary: "Provides a systematic framework for identifying and creating these new opportunities for growth.",
+  },
+  {
+    id: 68,
+    title: "Scaling Up: How a Few Companies Make It...and Why the Rest Don't",
+    author: "Verne Harnish",
+    description: "Provides a practical guide for business leaders on how to successfully scale a company past the startup phase.",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "scaling-up",
+    summary: "Focuses on four key decision areas: People, Strategy, Execution, and Cash, offering tools and techniques to navigate the challenges of growth.",
+  },
+  {
+    id: 69,
+    title: "Think and Grow Rich",
+    author: "Napoleon Hill",
+    description: "A classic self-help book based on the author's study of hundreds of wealthy and successful individuals.",
+    category: "Self-Help",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "think-and-grow-rich",
+    summary: "Outlines 13 principles for success, emphasizing the power of a burning desire, specialized knowledge, and persistent action.",
+  },
+  {
+    id: 70,
+    title: "Your Money or Your Life: 9 Steps to Transforming Your Relationship with Money and Achieving Financial Independence",
+    author: "Vicki Robin and Joe Dominguez",
+    description: "Offers a nine-step program to help you achieve financial independence by changing your relationship with money.",
+    category: "Finance",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "your-money-or-your-life",
+    summary: "Teaches you to track your life energy (time) in relation to your spending, encouraging mindful consumption and a path to early retirement.",
+  },
+  {
+    id: 71,
+    title: "The Intelligent Investor",
+    author: "Benjamin Graham",
+    description: "Considered the definitive text on 'value investing,' this book provides a comprehensive framework for investors to avoid common errors and achieve long-term success.",
+    category: "Finance",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "intelligent-investor",
+    summary: "Introduces the famous allegory of 'Mr. Market' and emphasizes the importance of a margin of safety.",
+  },
+  {
+    id: 72,
+    title: "I Will Teach You To Be Rich",
+    author: "Ramit Sethi",
+    description: "A practical, no-nonsense guide to personal finance for people in their 20s and 30s.",
+    category: "Finance",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "i-will-teach-you-to-be-rich",
+    summary: "Provides a 6-week program for automating finances, optimizing credit cards, and investing for the long term without obsessing over minor expenses.",
+  },
+  {
+    id: 73,
+    title: "The Little Book of Common Sense Investing",
+    author: "John C. Bogle",
+    description: "The founder of Vanguard presents a simple and effective investment strategy: owning a diversified portfolio of low-cost index funds.",
+    category: "Finance",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "little-book-common-sense-investing",
+    summary: "Argues that trying to beat the market is a loser's game and that the best path to wealth is to simply buy and hold the entire stock market.",
+  },
+  {
+    id: 74,
+    title: "A Random Walk Down Wall Street",
+    author: "Burton G. Malkiel",
+    description: "A classic guide to investing that argues it's nearly impossible to consistently outperform the market averages.",
+    category: "Finance",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "random-walk-down-wall-street",
+    summary: "Provides a comprehensive overview of various investment vehicles and strongly advocates for a long-term, diversified portfolio, particularly through index funds.",
+  },
+  {
+    id: 75,
+    title: "Financial Freedom: A Proven Path to All the Money You Will Ever Need",
+    author: "Grant Sabatier",
+    description: "Chronicles the author's journey to achieve financial independence by age 30 and provides a roadmap for others to do the same.",
+    category: "Finance",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "financial-freedom",
+    summary: "Focuses on maximizing income through side hustles, saving aggressively, and investing strategically to reach your 'number' as quickly as possible.",
+  },
+  {
+    id: 76,
+    title: "The Total Money Makeover: A Proven Plan for Financial Fitness",
+    author: "Dave Ramsey",
+    description: "Outlines a seven-step plan (the 'Baby Steps') to help people get out of debt and build wealth.",
+    category: "Finance",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "total-money-makeover",
+    summary: "Advocates for a disciplined, behavior-focused approach to personal finance, starting with a small emergency fund and using the 'debt snowball' method.",
+  },
+  {
+    id: 77,
+    title: "The Simple Path to Wealth: Your road map to financial independence and a rich, free life",
+    author: "JL Collins",
+    description: "Simplifies the complex world of investing into a straightforward and powerful strategy.",
+    category: "Finance",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "simple-path-to-wealth",
+    summary: "Advocates for a simple, low-cost, index-fund-based approach to building wealth and achieving financial independence.",
+  },
+  {
+    id: 78,
+    title: "The Bogleheads' Guide to Investing",
+    author: "Taylor Larimore, Mel Lindauer, and Michael LeBoeuf",
+    description: "A practical guide based on the investment philosophy of Vanguard founder John C. Bogle.",
+    category: "Finance",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "bogleheads-guide-to-investing",
+    summary: "Provides a DIY manual for building a simple, diversified, and effective investment portfolio using low-cost index funds.",
+  },
+  {
+    id: 79,
+    title: "The Science of Getting Rich",
+    author: "Wallace D. Wattles",
+    description: "This classic New Thought book, written in 1910, posits that wealth creation is a science governed by specific laws.",
+    category: "Self-Help",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "science-of-getting-rich",
+    summary: "Argues that by thinking and acting in a 'Certain Way,' anyone can harness the power of creative thought to attract prosperity.",
+  },
+  {
+    id: 80,
+    title: "The Millionaire Mind",
+    author: "Thomas J. Stanley",
+    description: "Delves into the mindset and beliefs of self-made millionaires.",
+    category: "Finance",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "millionaire-mind",
+    summary: "Reveals the common traits, habits, and ways of thinking that allow them to accumulate wealth, such as discipline, perseverance, and a focus on opportunities.",
+  },
+  {
+    id: 81,
+    title: "An Inquiry into the Nature and Causes of the Wealth of Nations",
+    author: "Adam Smith",
+    description: "A foundational text of classical economics, published in 1776, that explores the drivers of national prosperity.",
+    category: "Economics",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "wealth-of-nations",
+    summary: "Introduces key concepts like the division of labor, the 'invisible hand' of the market, and the benefits of free trade.",
+  },
+  {
+    id: 82,
+    title: "Cashflow Quadrant: Rich Dad's Guide to Financial Freedom",
+    author: "Robert T. Kiyosaki",
+    description: "Explains the four ways people generate income: as an Employee (E), Self-employed (S), Business owner (B), or Investor (I).",
+    category: "Finance",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "cashflow-quadrant",
+    summary: "Argues that true financial freedom is found by moving from the E and S quadrants to the B and I quadrants, where you have systems and money working for you.",
+  },
+  {
+    id: 83,
+    title: "The Barefoot Investor: The Only Money Guide You'll Ever Need",
+    author: "Scott Pape",
+    description: "Australia's all-time bestselling book, offering a simple, step-by-step financial plan for managing money.",
+    category: "Finance",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "barefoot-investor",
+    summary: "Uses a 'buckets' system for allocating income and provides a complete guide to eliminating debt, saving for a home, and retiring comfortably.",
+  },
+  {
+    id: 84,
+    title: "Early Retirement Extreme: A Philosophical and Practical Guide to Financial Independence",
+    author: "Jacob Lund Fisker",
+    description: "Presents a radical systems-based approach to achieving financial independence in as little as five years.",
+    category: "Finance",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "early-retirement-extreme",
+    summary: "Redefines wealth not as material possessions but as self-sufficiency and freedom, advocating for a holistic lifestyle that dramatically reduces expenses.",
+  },
+  {
+    id: 85,
+    title: "One Up On Wall Street: How To Use What You Already Know To Make Money In The Market",
+    author: "Peter Lynch",
+    description: "Legendary investor Peter Lynch argues that individual investors can beat the professionals by using their own specialized knowledge from their daily lives and careers.",
+    category: "Finance",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "one-up-on-wall-street",
+    summary: "Provides a framework for identifying promising companies and analyzing their stocks before Wall Street discovers them.",
+  },
+  {
+    id: 86,
+    title: "The Outsiders: Eight Unconventional CEOs and Their Radically Rational Blueprint for Success",
+    author: "William N. Thorndike Jr.",
+    description: "Profiles eight CEOs who generated extraordinary returns for their shareholders through a radically different approach to management.",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "outsiders",
+    summary: "Highlights their consistent focus on capital allocation—making smart decisions about how to deploy the company's cash—as the key to their success.",
+  },
+  {
+    id: 87,
+    title: "Liar's Poker",
+    author: "Michael Lewis",
+    description: "A partly autobiographical, insider's account of the high-stakes, cutthroat world of Wall Street investment banking in the 1980s.",
+    category: "Finance",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "liars-poker",
+    summary: "Chronicles the author's own experiences at Salomon Brothers, exposing the culture of greed, ambition, and excess that defined the era.",
+  },
+  {
+    id: 88,
+    title: "The Innovator's Dilemma: When New Technologies Cause Great Firms to Fail",
+    author: "Clayton M. Christensen",
+    description: "Explains why successful, well-managed companies often fail to innovate and lose their market leadership.",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "innovators-dilemma",
+    summary: "Introduces the theory of 'disruptive innovation,' where smaller, nimbler companies catering to niche markets eventually overtake established industry giants.",
+  },
+  {
+    id: 89,
+    title: "Where Good Ideas Come From: The Natural History of Innovation",
+    author: "Steven Johnson",
+    description: "Explores the environments and patterns that lead to breakthrough ideas and innovation.",
+    category: "Creativity",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "where-good-ideas-come-from",
+    summary: "Argues that creativity is not a single 'eureka' moment but a slow, collaborative process that thrives in connected, liquid networks where ideas can collide and evolve.",
+  },
+  {
+    id: 90,
+    title: "Show Your Work!: 10 Ways to Share Your Creativity and Get Discovered",
+    author: "Austin Kleon",
+    description: "A follow-up to Steal Like an Artist, this book is about making your creative process public to attract an audience and build a reputation.",
+    category: "Creativity",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "show-your-work",
+    summary: "Encourages creators to share their work generously and thoughtfully, even before it's perfect, to connect with others and create new opportunities.",
+  },
+  {
+    id: 91,
+    title: "Creative Confidence: Unleashing the Creative Potential Within Us All",
+    author: "Tom Kelley and David Kelley",
+    description: "Written by the founders of the design firm IDEO, this book argues that creativity is not a rare gift but a skill that can be developed.",
+    category: "Creativity",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "creative-confidence",
+    summary: "Provides principles and strategies from 'design thinking' to help individuals and organizations build their creative confidence and solve problems innovatively.",
+  },
+  {
+    id: 92,
+    title: "Lateral Thinking: A Textbook of Creativity",
+    author: "Edward de Bono",
+    description: "Introduces 'lateral thinking,' a set of techniques for problem-solving that involves deliberately looking at challenges from new and unconventional perspectives.",
+    category: "Creativity",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "lateral-thinking",
+    summary: "A method for breaking out of rigid thinking patterns to generate new ideas and creative solutions.",
+  },
+  {
+    id: 93,
+    title: "The Artist's Way: A Spiritual Path to Higher Creativity",
+    author: "Julia Cameron",
+    description: "A classic 12-week course designed to help people recover their creativity from self-doubt, fear, and other inhibiting blocks.",
+    category: "Creativity",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "artists-way",
+    summary: "Introduces foundational tools like 'The Morning Pages' (daily writing) and 'The Artist Date' (a weekly solo creative excursion) to nurture the inner artist.",
+  },
+  {
+    id: 94,
+    title: "The Clockwork Universe: Isaac Newton, the Royal Society, and the Birth of the Modern World",
+    author: "Edward Dolnick",
+    description: "Chronicles the scientific revolution of the late 17th century, focusing on the brilliant and often eccentric figures like Isaac Newton, Gottfried Leibniz, and Robert Hooke.",
+    category: "Science",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "clockwork-universe",
+    summary: "Describes the intense intellectual ferment and personal rivalries that led to the birth of modern science.",
+  },
+  {
+    id: 95,
+    title: "Value Proposition Design",
+    author: "Alexander Osterwalder, Yves Pigneur, et al.",
+    description: "Provides a practical framework and set of tools for creating products and services that customers actually want.",
+    category: "Product",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "value-proposition-design",
+    summary: "Focuses on the 'Value Proposition Canvas,' a tool to help you systematically understand customer needs and design compelling offers to meet them.",
+  },
+  {
+    id: 96,
+    title: "The Design of Everyday Things",
+    author: "Don Norman",
+    description: "This classic book explores the principles of user-centered design, explaining why some products satisfy customers while others frustrate them.",
+    category: "Design",
+    status: "Read",
+    dateRead: "2024-01-15",
+    cover: "/book-design-everyday-things.png",
+    notes: "Essential reading for anyone in product design. Norman's principles of good design are timeless.",
+    slug: "design-of-everyday-things",
+    summary: "Introduces key concepts like 'affordances' and 'signifiers' to show how good design communicates its function intuitively to the user.",
+  },
+  {
+    id: 97,
+    title: "Sprint: How to Solve Big Problems and Test New Ideas in Just Five Days",
+    author: "Jake Knapp",
+    description: "Outlines a five-day 'design sprint' process developed at Google Ventures for rapidly prototyping and testing new ideas with customers.",
+    category: "Product",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "sprint",
+    summary: "Provides a step-by-step guide for teams to move from a complex problem to a tested solution in a single work week.",
+  },
+  {
+    id: 98,
+    title: "The Lean Product Playbook: How to Innovate with Minimum Viable Products and Rapid Customer Feedback",
+    author: "Dan Olsen",
+    description: "Offers a practical, step-by-step guide to implementing Lean principles for product development.",
+    category: "Product",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "lean-product-playbook",
+    summary: "Details a process for achieving product-market fit by identifying target customers, defining an effective product strategy, and iterating on a Minimum Viable Product (MVP).",
+  },
+  {
+    id: 99,
+    title: "The Power of Broke: How Empty Pockets, a Tight Budget, and a Hunger for Success Can Become Your Greatest Competitive Advantage",
+    author: "Daymond John",
+    description: "The founder of FUBU and star of Shark Tank argues that starting a business with limited resources can be a powerful advantage.",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "power-of-broke",
+    summary: "Explains how hunger, desperation, and creativity born from necessity can fuel innovation and drive you to succeed.",
+  },
+  {
+    id: 100,
+    title: "The Disciplined Entrepreneurship: 24 Steps to a Successful Startup",
+    author: "Bill Aulet",
+    description: "Provides a comprehensive, integrated, and proven 24-step framework for building a successful startup.",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "disciplined-entrepreneurship",
+    summary: "Breaks down the entrepreneurial process into a series of manageable steps, from market segmentation and value proposition to customer acquisition.",
+  },
+  {
+    id: 101,
+    title: "The Art of Innovation: Lessons in Creativity from IDEO, America's Leading Design Firm",
+    author: "Tom Kelley",
+    description: "Gives an inside look at the processes and culture of the renowned design firm IDEO.",
+    category: "Creativity",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "art-of-innovation",
+    summary: "Shares stories and strategies for fostering a creative environment, encouraging collaboration, and using brainstorming and rapid prototyping to drive innovation.",
+  },
+  {
+    id: 102,
+    title: "Growth Hacker Marketing: A Primer on the Future of PR, Marketing, and Advertising",
+    author: "Ryan Holiday",
+    description: "Introduces the mindset and tactics of 'growth hacking,' a data-driven approach to marketing focused on rapid experimentation and scalable growth.",
+    category: "Marketing",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "growth-hacker-marketing",
+    summary: "Explains how startups use low-cost, testable, and trackable methods to acquire and retain customers.",
+  },
+  {
+    id: 103,
+    title: "The Dip: A Little Book That Teaches You When to Quit (and When to Stick)",
+    author: "Seth Godin",
+    description: "Explains that in any journey toward success, there's a difficult period called 'The Dip' where things get hard.",
+    category: "Self-Help",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "the-dip",
+    summary: "Godin argues that the key to success is strategically quitting things that aren't working and having the grit to push through the Dip in areas that matter.",
+  },
+  {
+    id: 104,
+    title: "The Entrepreneur Roller Coaster: Why Now Is the Time to #JoinTheRide",
+    author: "Darren Hardy",
+    description: "Prepares aspiring entrepreneurs for the emotional and tactical challenges of starting a business.",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "entrepreneur-roller-coaster",
+    summary: "Provides a guide to the essential skills, habits, and mindset needed to navigate the thrilling highs and terrifying lows of the entrepreneurial journey.",
+  },
+  {
+    id: 105,
+    title: "The 48 Laws of Power",
+    author: "Robert Greene",
+    description: "A pragmatic and often amoral guide to understanding and practicing the dynamics of power.",
+    category: "Self-Help",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "48-laws-of-power",
+    summary: "Distills 3,000 years of history into 48 'laws' that illustrate how to gain, observe, and defend against the power plays that occur in all human interactions.",
+  },
+  {
+    id: 106,
+    title: "Leaders Eat Last: Why Some Teams Pull Together and Others Don't",
+    author: "Simon Sinek",
+    description: "Explores the biology and psychology of leadership, arguing that the best leaders create a 'Circle of Safety' for their teams.",
+    category: "Leadership",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "leaders-eat-last",
+    summary: "Explains that when employees feel safe and supported, they are more likely to collaborate, innovate, and work together for the good of the organization.",
+  },
+  {
+    id: 107,
+    title: "Drive: The Surprising Truth About What Motivates Us",
+    author: "Daniel H. Pink",
+    description: "Challenges traditional 'carrot and stick' motivational models, arguing that true motivation comes from intrinsic factors.",
+    category: "Psychology",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "drive",
+    summary: "Identifies three key elements for high performance and satisfaction: Autonomy, Mastery, and Purpose.",
+  },
+  {
+    id: 108,
+    title: "Turn the Ship Around!: A True Story of Turning Followers into Leaders",
+    author: "L. David Marquet",
+    description: "Tells the story of how a former Navy captain transformed one of the worst-performing submarines into the best in the fleet.",
+    category: "Leadership",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "turn-the-ship-around",
+    summary: "He did this by implementing a 'leader-leader' model, pushing control down the chain of command and empowering his crew to take ownership and make decisions.",
+  },
+  {
+    id: 109,
+    title: "The Leadership Challenge: How to Make Extraordinary Things Happen in Organizations",
+    author: "James M. Kouzes and Barry Z. Posner",
+    description: "Outlines The Five Practices of Exemplary Leadership: Model the Way, Inspire a Shared Vision, Challenge the Process, Enable Others to Act, and Encourage the Heart.",
+    category: "Leadership",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "leadership-challenge",
+    summary: "Provides a practical framework for anyone looking to improve their leadership abilities.",
+  },
+  {
+    id: 110,
+    title: "Radical Candor: Be a Kick-Ass Boss Without Losing Your Humanity",
+    author: "Kim Scott",
+    description: "Offers a framework for effective management based on providing feedback that is both caring and direct.",
+    category: "Leadership",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "radical-candor",
+    summary: "Teaches leaders how to build better relationships with their teams by 'Caring Personally' while also 'Challenging Directly,' creating a culture of open and honest communication.",
+  },
+  {
+    id: 111,
+    title: "Dare to Lead",
+    author: "Brené Brown",
+    description: "Translates Brené Brown's research on courage, vulnerability, shame, and empathy into a practical playbook for brave leadership.",
+    category: "Leadership",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "dare-to-lead",
+    summary: "Argues that true leadership requires vulnerability and the courage to have tough conversations, build trust, and take smart risks.",
+  },
+  {
+    id: 112,
+    title: "The Art of War",
+    author: "Sun Tzu",
+    description: "This ancient Chinese military treatise is a classic work on strategy that has been applied to warfare, business, and life for centuries.",
+    category: "Strategy",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "art-of-war",
+    summary: "Provides timeless principles on planning, deception, discipline, and understanding the competitive landscape to achieve victory.",
+  },
+  {
+    id: 113,
+    title: "Team of Rivals: The Political Genius of Abraham Lincoln",
+    author: "Doris Kearns Goodwin",
+    description: "Details how Abraham Lincoln, upon winning the presidency, appointed his former political rivals to his cabinet.",
+    category: "History",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "team-of-rivals",
+    summary: "Illustrates his remarkable leadership genius in harnessing their diverse talents and conflicting egos to preserve the nation and win the Civil War.",
+  },
+  {
+    id: 114,
+    title: "The Speed of Trust: The One Thing That Changes Everything",
+    author: "Stephen M. R. Covey",
+    description: "Argues that trust is not a soft social virtue but a hard, economic driver that can be created and measured.",
+    category: "Business",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "speed-of-trust",
+    summary: "Explains how high-trust environments reduce costs, speed up results, and increase profitability in organizations and relationships.",
+  },
+  {
+    id: 115,
+    title: "Multipliers: How the Best Leaders Make Everyone Smarter",
+    author: "Liz Wiseman",
+    description: "Contrasts two types of leaders: 'Multipliers,' who amplify the intelligence and capabilities of their teams, and 'Diminishers,' who drain them.",
+    category: "Leadership",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "multipliers",
+    summary: "Provides practical strategies for becoming a Multiplier who unleashes the full potential of the people around them.",
+  },
+  {
+    id: 116,
+    title: "The Idea Factory: Bell Labs and the Great Age of American Innovation",
+    author: "Jon Gertner",
+    description: "Chronicles the history of Bell Labs, the legendary research and development arm of AT&T that was arguably the most innovative institution of the 20th century.",
+    category: "History",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "idea-factory",
+    summary: "Explores the unique culture and management practices that led to groundbreaking inventions like the transistor, the laser, and cellular technology.",
+  },
+  {
+    id: 117,
+    title: "The Money Book for the Young, Fabulous & Broke",
+    author: "Suze Orman",
+    description: "A financial guide specifically aimed at young people facing modern economic challenges like student loan debt and a difficult job market.",
+    category: "Finance",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "money-book-young-fabulous-broke",
+    summary: "Provides practical advice on credit scores, career choices, investing, and navigating the key financial decisions of early adulthood.",
+  },
+  {
+    id: 118,
+    title: "Think Like a Rocket Scientist: Simple Strategies You Can Use to Make Giant Leaps in Work and Life",
+    author: "Ozan Varol",
+    description: "Applies the mindset and problem-solving strategies of rocket scientists to everyday challenges in business and life.",
+    category: "Self-Help",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "think-like-a-rocket-scientist",
+    summary: "Teaches you how to think critically, embrace uncertainty, test ideas, and learn from failure to achieve breakthrough results.",
+  },
+  {
+    id: 119,
+    title: "Fooled by Randomness: The Hidden Role of Chance in Life and in the Markets",
+    author: "Nassim Nicholas Taleb",
+    description: "The first book in Taleb's Incerto series, exploring the profound impact of randomness and luck on our lives, particularly in the world of finance.",
+    category: "Finance",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "fooled-by-randomness",
+    summary: "Warns against mistaking good fortune for skill and highlights the cognitive biases that make us underestimate the role of chance.",
+  },
+  {
+    id: 120,
+    title: "Black Box Thinking: Why Most People Never Learn from Their Mistakes—But Some Do",
+    author: "Matthew Syed",
+    description: "Explores the power of learning from failure by contrasting the closed-loop, blame-focused cultures in fields like healthcare with the open, learning-focused cultures in aviation.",
+    category: "Self-Help",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "black-box-thinking",
+    summary: "Advocates for creating systems and mindsets that treat failure as a valuable source of data for improvement.",
+  },
+  {
+    id: 121,
+    title: "Predictably Irrational: The Hidden Forces That Shape Our Decisions",
+    author: "Dan Ariely",
+    description: "Explores the many ways in which human beings are predictably irrational in their decision-making.",
+    category: "Psychology",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "predictably-irrational",
+    summary: "Reveals the hidden psychological forces that lead us to make choices that are not always in our best interest.",
+  },
+  {
+    id: 122,
+    title: "Calling Bullshit: The Art of Skepticism in a Data-Driven World",
+    author: "Carl T. Bergstrom and Jevin D. West",
+    description: "Provides a toolkit for identifying and refuting bullshit, especially the kind that uses data, statistics, and scientific-sounding language to appear legitimate.",
+    category: "Critical Thinking",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "calling-bullshit",
+    summary: "Teaches readers how to think critically about the information they encounter and become more discerning consumers of data.",
+  },
+  {
+    id: 123,
+    title: "The Demon-Haunted World: Science as a Candle in the Dark",
+    author: "Carl Sagan",
+    description: "Astronomer Carl Sagan makes a passionate case for scientific and skeptical thinking as a defense against superstition and pseudoscience.",
+    category: "Science",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "demon-haunted-world",
+    summary: "Provides readers with a 'baloney detection kit' to help them distinguish between valid scientific claims and fraudulent ones.",
+  },
+  {
+    id: 124,
+    title: "Asking the Right Questions: A Guide to Critical Thinking",
+    author: "M. Neil Browne and Stuart M. Keeley",
+    description: "A practical textbook that teaches the skills of critical thinking by focusing on the process of asking probing questions.",
+    category: "Critical Thinking",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "asking-the-right-questions",
+    summary: "Provides a framework for analyzing arguments, identifying assumptions, evaluating evidence, and forming your own well-reasoned conclusions.",
+  },
+  {
+    id: 125,
+    title: "Factfulness: Ten Reasons We're Wrong About the World—and Why Things Are Better Than You Think",
+    author: "Hans Rosling with Ola Rosling and Anna Rosling Rönnlund",
+    description: "Reveals the ten dramatic instincts that distort our perception of the world and make us overly pessimistic about the state of humanity.",
+    category: "Science",
+    status: "Want to Read",
+    dateRead: "",
+    cover: "",
+    notes: "",
+    slug: "factfulness",
+    summary: "Using compelling data, Rosling shows that the world is, in many ways, in a much better state than we think and provides tools for a more fact-based worldview.",
+  },
+  // --- Add more books as needed ---
+  {
+    id: 126,
+    title: "Clean Code",
+    author: "Robert C. Martin",
+    description: "A handbook of agile software craftsmanship.",
+    category: "Development",
+    status: "Read",
+    dateRead: "2023-12-28",
+    cover: "/book-clean-code.png",
+    notes: "Must-read for any developer. Changed how I think about writing code.",
+    slug: "clean-code",
+    summary: "A guide to writing clean, maintainable code that follows best practices and principles.",
   },
 ]
 
-const categories = ["All", "Design", "Development", "Business", "Productivity", "Psychology"]
-const statuses = ["All", "Read", "Currently Reading", "Want to Read"]
-
-const statusColors = {
-  Read: "bg-emerald-600 text-white",
-  "Currently Reading": "bg-amber-600 text-white",
-  "Want to Read": "bg-zinc-600 text-white",
-}
+const categories = [
+  "All",
+  ...Array.from(new Set(books.map((b) => b.category))).filter(Boolean),
+]
 
 export default function BooksPage() {
   const [searchTerm, setSearchTerm] = useState("")
   const [selectedCategory, setSelectedCategory] = useState("All")
-  const [selectedStatus, setSelectedStatus] = useState("All")
 
   const filteredBooks = books.filter((book) => {
     const matchesSearch =
       book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       book.author.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      book.description.toLowerCase().includes(searchTerm.toLowerCase())
+      (book.description?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false) ||
+      (book.summary?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false)
     const matchesCategory = selectedCategory === "All" || book.category === selectedCategory
-    const matchesStatus = selectedStatus === "All" || book.status === selectedStatus
-    return matchesSearch && matchesCategory && matchesStatus
+    return matchesSearch && matchesCategory
   })
-
-  const featuredBook = books.find((book) => book.featured)
-  const regularBooks = filteredBooks.filter((book) => !book.featured)
-
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, i) => (
-      <Star key={i} className={`w-4 h-4 ${i < rating ? "text-amber-400 fill-amber-400" : "text-zinc-600"}`} />
-    ))
-  }
 
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
@@ -133,199 +1681,104 @@ export default function BooksPage() {
 
       <div className="relative z-10 container mx-auto px-4 pt-20 pb-8 max-w-2xl">
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold mb-2 text-white bg-gradient-to-r from-white via-amber-100 to-emerald-100 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold mb-2 text-white bg-gradient-to-r from-white via-amber-100 to-emerald-100 bg-clip-text text-transparent">
             Books
           </h1>
           <p className="text-zinc-300 text-sm">Reading journey through design and development</p>
         </div>
 
+        {/* Minimal Stats */}
+        <div className="flex items-center justify-center mb-8">
+          <div className="flex items-center gap-2 px-4 py-2 bg-zinc-900/30 rounded-full border border-zinc-700/30 backdrop-blur-sm">
+            <BookIcon className="w-4 h-4 text-amber-400" />
+            <span className="text-sm text-zinc-300">
+              <span className="text-amber-300 font-semibold">{books.length}</span> books
+            </span>
+          </div>
+        </div>
+
         {/* Search and Filters */}
-        <div className="mb-6 space-y-3">
-          <div className="relative">
+        <div className="mb-8 space-y-4">
+          <div className="relative max-w-md mx-auto">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 w-4 h-4" />
             <Input
               type="text"
               placeholder="Search books..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 h-8 text-sm bg-zinc-900/50 border-zinc-700/50 focus:border-amber-500/50 text-white placeholder:text-zinc-400 backdrop-blur-sm"
+              className="pl-10 h-10 text-sm bg-zinc-900/50 border-zinc-700/50 focus:border-amber-500/50 text-white placeholder:text-zinc-400 backdrop-blur-sm"
             />
           </div>
 
-          <div className="space-y-3">
-            <div>
-              <h3 className="text-xs font-medium text-zinc-400 mb-2">Category</h3>
-              <div className="flex flex-wrap gap-1">
-                {categories.map((category) => (
-                  <Button
-                    key={category}
-                    variant={selectedCategory === category ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setSelectedCategory(category)}
-                    className={
-                      selectedCategory === category
-                        ? "h-7 px-2 text-xs bg-amber-600 hover:bg-amber-500 text-white border-amber-500"
-                        : "h-7 px-2 text-xs bg-transparent border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:border-zinc-600"
-                    }
-                  >
-                    <Filter className="w-3 h-3 mr-1" />
-                    {category}
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-xs font-medium text-zinc-400 mb-2">Status</h3>
-              <div className="flex flex-wrap gap-1">
-                {statuses.map((status) => (
-                  <Button
-                    key={status}
-                    variant={selectedStatus === status ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setSelectedStatus(status)}
-                    className={
-                      selectedStatus === status
-                        ? "h-7 px-2 text-xs bg-emerald-600 hover:bg-emerald-500 text-white border-emerald-500"
-                        : "h-7 px-2 text-xs bg-transparent border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:border-zinc-600"
-                    }
-                  >
-                    {status}
-                  </Button>
-                ))}
-              </div>
-            </div>
+          <div className="flex flex-wrap gap-2 justify-center">
+            {categories.map((category) => (
+              <Button
+                key={category}
+                variant={selectedCategory === category ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSelectedCategory(category)}
+                className={
+                  selectedCategory === category
+                    ? "cursor-pointer h-8 px-3 text-xs bg-amber-600 hover:bg-amber-500 text-white border-amber-500"
+                    : "cursor-pointer h-8 px-3 text-xs bg-transparent border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:border-zinc-600"
+                }
+              >
+                <Filter className="w-3 h-3 mr-1" />
+                {category}
+              </Button>
+            ))}
           </div>
         </div>
 
-        {/* Featured Book */}
-        {featuredBook && selectedCategory === "All" && selectedStatus === "All" && (
-          <Card className="mb-6 p-4 bg-transparent bg-gradient-to-br from-amber-900/20 via-orange-900/15 to-emerald-900/20 border border-amber-500/30 backdrop-blur-md hover:border-amber-500/50 transition-all duration-300">
-            <div className="flex items-start justify-between mb-4">
-              <Badge className="text-xs bg-amber-600 text-white border-amber-500">Featured</Badge>
-              <Badge className={`text-xs ${statusColors[featuredBook.status as keyof typeof statusColors]}`}>
-                {featuredBook.status}
-              </Badge>
-            </div>
-
-            <div className="space-y-4">
-              <div className="text-center">
-                <img
-                  src={featuredBook.cover || "/placeholder.svg"}
-                  alt={featuredBook.title}
-                  className="w-20 h-28 mx-auto rounded-lg shadow-2xl border border-zinc-700/50 mb-3"
-                />
-              </div>
-
-              <div>
-                <h2 className="text-lg font-bold text-white mb-1">{featuredBook.title}</h2>
-                <p className="text-amber-300 text-sm font-medium mb-3">by {featuredBook.author}</p>
-
-                <div className="flex items-center justify-center gap-3 mb-3">
-                  <div className="flex items-center gap-1">{renderStars(featuredBook.rating)}</div>
-                  <Badge variant="outline" className="text-xs border-zinc-600 text-zinc-300 bg-zinc-800/30">
-                    {featuredBook.category}
+        {/* Books Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {filteredBooks.map((book) => (
+            <Card
+              key={book.id}
+              className="group bg-transparent bg-gradient-to-br from-zinc-900/40 via-zinc-800/30 to-zinc-900/40 backdrop-blur-md border border-zinc-700/30 hover:border-amber-500/40 transition-all duration-300 hover:scale-[1.02] flex flex-col"
+            >
+              <div className="p-4 space-y-3 flex-1">
+                {/* Header: Title, Author, Category */}
+                <div className="flex items-start justify-between">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-sm font-bold text-white group-hover:text-amber-100 transition-colors mb-1 line-clamp-1">
+                      {book.title}
+                    </h3>
+                    <p className="text-amber-300 text-xs font-medium">by {book.author}</p>
+                  </div>
+                  <Badge variant="outline" className="text-xs border-zinc-600 text-zinc-300 bg-zinc-800/30 ml-3 flex-shrink-0">
+                    {book.category}
                   </Badge>
                 </div>
 
-                {featuredBook.dateRead && (
-                  <div className="flex items-center justify-center gap-1 text-xs text-zinc-400 mb-3">
-                    <Calendar className="w-3 h-3" />
-                    {new Date(featuredBook.dateRead).toLocaleDateString()}
-                  </div>
-                )}
+                {/* Description */}
+                <p className="text-zinc-300 text-xs leading-relaxed line-clamp-2">
+                  {book.description}
+                </p>
+                {/* Two-line summary */}
+                {/* {book.summary && (
+                  <p className="text-zinc-400 text-xs leading-relaxed line-clamp-2">
+                    {book.summary}
+                  </p>
+                )} */}
+              </div>
 
-                <p className="text-zinc-300 text-sm mb-4 leading-relaxed">{featuredBook.description}</p>
-
-                {featuredBook.notes && (
-                  <div className="bg-zinc-900/50 rounded-lg p-3 mb-4 border border-zinc-700/30">
-                    <h4 className="text-xs font-medium text-amber-300 mb-2">My Notes</h4>
-                    <p className="text-zinc-300 text-xs italic">"{featuredBook.notes}"</p>
-                  </div>
-                )}
-
-                <div className="flex gap-2 justify-center">
-                  <Button size="sm" className="h-8 px-3 text-xs bg-amber-600 hover:bg-amber-500 text-white">
-                    <BookOpen className="w-3 h-3 mr-1" />
-                    Details
-                  </Button>
+              {/* Action Buttons - Fixed at bottom */}
+              <div className="p-4 pt-0">
+                <div className="flex gap-2">
+                  <Link href={`/books/${book.slug}`} className="flex-1">
+                    <Button size="sm" className="cursor-pointer w-full h-7 text-xs bg-amber-600 hover:bg-amber-500 text-white">
+                      <BookOpen className="w-3 h-3 mr-1" />
+                      Summary
+                    </Button>
+                  </Link>
                   <Button
                     size="sm"
                     variant="outline"
-                    className="h-8 px-3 text-xs border-zinc-600 text-zinc-300 hover:bg-zinc-800 bg-transparent"
+                    className="cursor-pointer h-7 w-7 p-0 border-zinc-600 text-zinc-300 hover:bg-zinc-800 bg-transparent"
                   >
-                    <ExternalLink className="w-3 h-3 mr-1" />
-                    Find
+                    <ExternalLink className="w-3 h-3" />
                   </Button>
-                </div>
-              </div>
-            </div>
-          </Card>
-        )}
-
-        {/* Books Grid */}
-        <div className="space-y-4">
-          {regularBooks.map((book) => (
-            <Card
-              key={book.id}
-              className="p-4 bg-transparent bg-gradient-to-br from-zinc-900/40 via-zinc-800/30 to-zinc-900/40 backdrop-blur-md border border-zinc-700/30 hover:border-amber-500/40 transition-all duration-300 group hover:scale-[1.02]"
-            >
-              <div className="flex items-start justify-between mb-3">
-                <Badge variant="outline" className="text-xs border-zinc-600 text-zinc-300 bg-zinc-800/30">
-                  {book.category}
-                </Badge>
-                <Badge className={`text-xs ${statusColors[book.status as keyof typeof statusColors]}`}>
-                  {book.status}
-                </Badge>
-              </div>
-
-              <div className="flex gap-3">
-                <img
-                  src={book.cover || "/placeholder.svg"}
-                  alt={book.title}
-                  className="w-16 h-20 object-cover rounded-lg border border-zinc-700/50 flex-shrink-0"
-                />
-
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-sm font-semibold text-white group-hover:text-amber-100 transition-colors mb-1 truncate">
-                    {book.title}
-                  </h3>
-
-                  <p className="text-amber-300 text-xs font-medium mb-2">by {book.author}</p>
-
-                  <div className="flex items-center gap-1 mb-2">{renderStars(book.rating)}</div>
-
-                  <p className="text-zinc-300 text-xs mb-3 leading-relaxed line-clamp-2">{book.description}</p>
-
-                  {book.dateRead && (
-                    <div className="flex items-center gap-1 text-xs text-zinc-400 mb-3">
-                      <Calendar className="w-3 h-3" />
-                      {new Date(book.dateRead).toLocaleDateString()}
-                    </div>
-                  )}
-
-                  {book.notes && (
-                    <div className="bg-zinc-900/50 rounded p-2 mb-3 border border-zinc-700/30">
-                      <p className="text-zinc-400 text-xs italic line-clamp-1">"{book.notes}"</p>
-                    </div>
-                  )}
-
-                  <div className="flex gap-2">
-                    <Button
-                      size="sm"
-                      className="h-7 px-2 text-xs bg-emerald-600 hover:bg-emerald-500 text-white flex-1"
-                    >
-                      <BookOpen className="w-3 h-3 mr-1" />
-                      Details
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="h-7 w-7 p-0 border-zinc-600 text-zinc-300 hover:bg-zinc-800 bg-transparent"
-                    >
-                      <ExternalLink className="w-3 h-3" />
-                    </Button>
-                  </div>
                 </div>
               </div>
             </Card>
@@ -333,16 +1786,15 @@ export default function BooksPage() {
         </div>
 
         {filteredBooks.length === 0 && (
-          <div className="text-center py-8">
-            <p className="text-zinc-400 text-sm">No books found matching your criteria.</p>
+          <div className="text-center py-12">
+            <div className="text-zinc-400 text-sm mb-4">No books found matching your criteria.</div>
             <Button
               variant="ghost"
               onClick={() => {
                 setSearchTerm("")
                 setSelectedCategory("All")
-                setSelectedStatus("All")
               }}
-              className="mt-3 h-8 px-3 text-xs text-amber-300 hover:text-amber-200 hover:bg-amber-900/20"
+              className="h-9 px-4 text-sm text-amber-300 hover:text-amber-200 hover:bg-amber-900/20"
             >
               Clear Filters
             </Button>

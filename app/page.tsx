@@ -20,6 +20,7 @@ import {
   Youtube,
 } from "lucide-react"
 import { useRef } from "react"
+import Image from 'next/image'
 
 export default function HomePage() {
   const newsletterRef = useRef<HTMLDivElement>(null)
@@ -52,19 +53,80 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 py-16 max-w-sm">
-        <div className="text-center mb-10">
-          <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-amber-500/20 via-orange-500/20 to-yellow-500/20 border border-amber-500/30 flex items-center justify-center backdrop-blur-sm shadow-lg shadow-amber-500/10 relative">
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-500/10 to-orange-500/10 animate-pulse" />
-            <User className="w-7 h-7 text-amber-200 relative z-10" />
+
+      <div className="relative z-10 container ml-20 mx-auto px-6 py-16 max-w-[800px] ">
+        <div className="mb-10">
+          <div className='flex items-center justify-between'>
+            <div className='flex items-center'>
+              <div className="w-20 h-20 mb-4 rounded-xl bg-gradient-to-br from-amber-500/20 via-orange-500/20 to-yellow-500/20 border border-amber-500/30 flex items-center justify-center backdrop-blur-sm shadow-lg shadow-amber-500/10 relative">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-500/10 to-orange-500/10 animate-pulse" />
+                <Image src="/profile.jpg" width={100} height={100} alt="Profile Picture" className=" text-amber-200 relative z-10 rounded-xl" />
+              </div>
+              <div className='ml-4 flex flex-col'>
+                <h1 className="text-xl font-semibold mb-2 text-white tracking-tight bg-gradient-to-r from-white via-amber-100 to-orange-100 bg-clip-text ">
+                  {"Hey, I'm Aman"}
+                </h1>
+                <p className="text-zinc-300 text-sm mb-4 font-light">Software Engineer &amp; Entrepreneur. </p>
+              </div>
+            </div>
+            <div className="flex gap-2">
+              <a
+                href="https://github.com/amanx123"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-lg border-2 border-zinc-700 hover:border-white flex items-center justify-center transition-all duration-300 group hover:scale-105 relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <Github className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors relative z-10" />
+                <div className="absolute inset-0 border-2 border-white/20 rounded-xl scale-0 group-hover:scale-110 transition-transform duration-500 opacity-0 group-hover:opacity-100" />
+              </a>
+              <a
+                href="https://x.com/amanagarwalx"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-lg border-2 border-zinc-700 hover:border-white flex items-center justify-center transition-all duration-300 group hover:scale-105 relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <Twitter className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors relative z-10" />
+                <div className="absolute inset-0 border-2 border-white/20 rounded-xl scale-0 group-hover:scale-110 transition-transform duration-500 opacity-0 group-hover:opacity-100" />
+              </a>
+              <a
+                href="https://linkedin.com/in/amanagarwalx"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-lg border-2 border-zinc-700 hover:border-white flex items-center justify-center transition-all duration-300 group hover:scale-105 relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <Linkedin className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors relative z-10" />
+                <div className="absolute inset-0 border-2 border-white/20 rounded-xl scale-0 group-hover:scale-110 transition-transform duration-500 opacity-0 group-hover:opacity-100" />
+              </a>
+              <a
+                href="https://instagram.com/amanagarwal.ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-lg border-2 border-zinc-700 hover:border-white flex items-center justify-center transition-all duration-300 group hover:scale-105 relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <Instagram className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors relative z-10" />
+                <div className="absolute inset-0 border-2 border-white/20 rounded-xl scale-0 group-hover:scale-110 transition-transform duration-500 opacity-0 group-hover:opacity-100" />
+              </a>
+              <a
+                href="https://youtube.com/@amanagarwalx"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 rounded-lg border-2 border-zinc-700 hover:border-white flex items-center justify-center transition-all duration-300 group hover:scale-105 relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <Youtube className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors relative z-10" />
+                <div className="absolute inset-0 border-2 border-white/20 rounded-xl scale-0 group-hover:scale-110 transition-transform duration-500 opacity-0 group-hover:opacity-100" />
+              </a>
+            </div>
           </div>
+        </div>
 
-          <h1 className="text-xl font-semibold mb-2 text-white tracking-tight bg-gradient-to-r from-white via-amber-100 to-orange-100 bg-clip-text text-transparent">
-            {"Aman Agarwal"}
-          </h1>
-          <p className="text-zinc-300 text-sm mb-4 font-light">Ai Engineer &amp; Entrepreneur    </p>
 
-          {/* <div className="flex justify-center gap-2 mb-6">
+
+        {/* <div className="flex justify-center gap-2 mb-6">
             <Badge
               variant="secondary"
               className="bg-amber-900/30 text-amber-200 border-amber-500/20 text-xs px-3 py-1 font-normal backdrop-blur-sm"
@@ -79,63 +141,11 @@ export default function HomePage() {
             </Badge>
           </div> */}
 
-          <div className="flex justify-center gap-2">
-            <a
-              href="https://github.com/amanx123"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 rounded-xl border-2 border-zinc-700 hover:border-white flex items-center justify-center transition-all duration-300 group hover:scale-105 relative overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <Github className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors relative z-10" />
-              <div className="absolute inset-0 border-2 border-white/20 rounded-xl scale-0 group-hover:scale-110 transition-transform duration-500 opacity-0 group-hover:opacity-100" />
-            </a>
-            <a
-              href="https://x.com/amanagarwalx"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 rounded-xl border-2 border-zinc-700 hover:border-white flex items-center justify-center transition-all duration-300 group hover:scale-105 relative overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <Twitter className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors relative z-10" />
-              <div className="absolute inset-0 border-2 border-white/20 rounded-xl scale-0 group-hover:scale-110 transition-transform duration-500 opacity-0 group-hover:opacity-100" />
-            </a>
-            <a
-              href="https://linkedin.com/in/amanagarwalx"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 rounded-xl border-2 border-zinc-700 hover:border-white flex items-center justify-center transition-all duration-300 group hover:scale-105 relative overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <Linkedin className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors relative z-10" />
-              <div className="absolute inset-0 border-2 border-white/20 rounded-xl scale-0 group-hover:scale-110 transition-transform duration-500 opacity-0 group-hover:opacity-100" />
-            </a>
-            <a
-              href="https://instagram.com/amanagarwal.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 rounded-xl border-2 border-zinc-700 hover:border-white flex items-center justify-center transition-all duration-300 group hover:scale-105 relative overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <Instagram className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors relative z-10" />
-              <div className="absolute inset-0 border-2 border-white/20 rounded-xl scale-0 group-hover:scale-110 transition-transform duration-500 opacity-0 group-hover:opacity-100" />
-            </a>
-            <a
-              href="https://youtube.com/@amanagarwalx"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 rounded-xl border-2 border-zinc-700 hover:border-white flex items-center justify-center transition-all duration-300 group hover:scale-105 relative overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <Youtube className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors relative z-10" />
-              <div className="absolute inset-0 border-2 border-white/20 rounded-xl scale-0 group-hover:scale-110 transition-transform duration-500 opacity-0 group-hover:opacity-100" />
-            </a>
-          </div>
-        </div>
 
-        <div className="space-y-2 mb-8 ">
-          <Card className="group p-4 bg-transparent bg-gradient-to-r from-zinc-900/40 via-zinc-800/30 to-zinc-900/40 backdrop-blur-md border border-zinc-700/30 hover:border-zinc-500/60 transition-all duration-500 cursor-pointer hover:shadow-xl hover:shadow-zinc-500/10 hover:scale-[1.02] relative overflow-hidden">
-            <Link href="https://stacflo.com">
+
+        <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-3">
+          <Card className="group p-4 bg-transparent bg-gradient-to-r from-zinc-900/40 via-zinc-800/30 to-zinc-900/40 backdrop-blur-md border border-zinc-700/30 hover:border-zinc-500/60 transition-all duration-500 cursor-pointer hover:shadow-xl hover:shadow-zinc-500/10 hover:scale-[1.02] relative overflow-hidden">
+            <Link href="https://stacflo.amanagarwal.dev" >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/2 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="flex items-center justify-between relative z-10">
                 <div className="flex items-center gap-3">
@@ -145,9 +155,9 @@ export default function HomePage() {
                     <div className="absolute inset-0 border-2 border-white/10 rounded-xl scale-0 group-hover:scale-110 transition-transform duration-500 opacity-0 group-hover:opacity-100" />
                   </div>
                   <div>
-                    <h3 className="font-medium text-sm text-white transition-colors">My Agency</h3>
+                    <h3 className="font-medium text-sm text-white transition-colors">Agency</h3>
                     <p className="text-xs text-zinc-400 font-light group-hover:text-zinc-300 transition-colors">
-                      {"stacflo.com"}
+                      {"I run a software development studio."}
                     </p>
                   </div>
                 </div>
@@ -156,63 +166,130 @@ export default function HomePage() {
             </Link>
           </Card>
           <Card className="group p-4 bg-transparent bg-gradient-to-r from-zinc-900/40 via-zinc-800/30 to-zinc-900/40 backdrop-blur-md border border-zinc-700/30 hover:border-zinc-500/60 transition-all duration-500 cursor-pointer hover:shadow-xl hover:shadow-zinc-500/10 hover:scale-[1.02] relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/2 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="flex items-center justify-between relative z-10">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-xl border-2 border-zinc-600 group-hover:border-zinc-400 flex items-center justify-center transition-all duration-300 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <Package className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors relative z-10" />
-                  <div className="absolute inset-0 border-2 border-white/10 rounded-xl scale-0 group-hover:scale-110 transition-transform duration-500 opacity-0 group-hover:opacity-100" />
+            <Link href="/products" >
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/2 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="flex items-center justify-between relative z-10">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-xl border-2 border-zinc-600 group-hover:border-zinc-400 flex items-center justify-center transition-all duration-300 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <Package className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors relative z-10" />
+                    <div className="absolute inset-0 border-2 border-white/10 rounded-xl scale-0 group-hover:scale-110 transition-transform duration-500 opacity-0 group-hover:opacity-100" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-sm text-white transition-colors">Software Products</h3>
+                    <p className="text-xs text-zinc-400 font-light group-hover:text-zinc-300 transition-colors">
+                      Explore all my apps and saas products.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-medium text-sm text-white transition-colors">My Products</h3>
-                  <p className="text-xs text-zinc-400 font-light group-hover:text-zinc-300 transition-colors">
-                    Digital tools
-                  </p>
-                </div>
+                <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-white transition-all duration-300 group-hover:translate-x-1" />
               </div>
-              <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-white transition-all duration-300 group-hover:translate-x-1" />
-            </div>
+            </Link>
           </Card>
-
           <Card className="group p-4 bg-transparent bg-gradient-to-r from-zinc-900/40 via-zinc-800/30 to-zinc-900/40 backdrop-blur-md border border-zinc-700/30 hover:border-zinc-500/60 transition-all duration-500 cursor-pointer hover:shadow-xl hover:shadow-zinc-500/10 hover:scale-[1.02] relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/2 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="flex items-center justify-between relative z-10">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-xl border-2 border-zinc-600 group-hover:border-zinc-400 flex items-center justify-center transition-all duration-300 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <Sparkles className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors relative z-10" />
-                  <div className="absolute inset-0 border-2 border-white/10 rounded-xl scale-0 group-hover:scale-110 transition-transform duration-500 opacity-0 group-hover:opacity-100" />
+            <Link href="/digital-products" >
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/2 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="flex items-center justify-between relative z-10">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-xl border-2 border-zinc-600 group-hover:border-zinc-400 flex items-center justify-center transition-all duration-300 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <Package className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors relative z-10" />
+                    <div className="absolute inset-0 border-2 border-white/10 rounded-xl scale-0 group-hover:scale-110 transition-transform duration-500 opacity-0 group-hover:opacity-100" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-sm text-white transition-colors">Digital Products</h3>
+                    <p className="text-xs text-zinc-400 font-light group-hover:text-zinc-300 transition-colors">
+                      Explore all my digital products.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-medium text-sm text-white transition-colors">About</h3>
-                  <p className="text-xs text-zinc-400 font-light group-hover:text-zinc-300 transition-colors">
-                    My story
-                  </p>
-                </div>
+                <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-white transition-all duration-300 group-hover:translate-x-1" />
               </div>
-              <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-white transition-all duration-300 group-hover:translate-x-1" />
-            </div>
+            </Link>
           </Card>
-
           <Card className="group p-4 bg-transparent bg-gradient-to-r from-zinc-900/40 via-zinc-800/30 to-zinc-900/40 backdrop-blur-md border border-zinc-700/30 hover:border-zinc-500/60 transition-all duration-500 cursor-pointer hover:shadow-xl hover:shadow-zinc-500/10 hover:scale-[1.02] relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/2 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="flex items-center justify-between relative z-10">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-xl border-2 border-zinc-600 group-hover:border-zinc-400 flex items-center justify-center transition-all duration-300 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <Mail className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors relative z-10" />
-                  <div className="absolute inset-0 border-2 border-white/10 rounded-xl scale-0 group-hover:scale-110 transition-transform duration-500 opacity-0 group-hover:opacity-100" />
+            <Link href="/learn" >
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/2 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="flex items-center justify-between relative z-10">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-xl border-2 border-zinc-600 group-hover:border-zinc-400 flex items-center justify-center transition-all duration-300 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <Package className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors relative z-10" />
+                    <div className="absolute inset-0 border-2 border-white/10 rounded-xl scale-0 group-hover:scale-110 transition-transform duration-500 opacity-0 group-hover:opacity-100" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-sm text-white transition-colors">Learn</h3>
+                    <p className="text-xs text-zinc-400 font-light group-hover:text-zinc-300 transition-colors">
+                      Learn programming concepts to build stuff fast.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-medium text-sm text-white transition-colors">Contact</h3>
-                  <p className="text-xs text-zinc-400 font-light group-hover:text-zinc-300 transition-colors">
-                    Get in touch
-                  </p>
-                </div>
+                <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-white transition-all duration-300 group-hover:translate-x-1" />
               </div>
-              <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-white transition-all duration-300 group-hover:translate-x-1" />
-            </div>
+            </Link>
+          </Card>
+          <Card className="group p-4 bg-transparent bg-gradient-to-r from-zinc-900/40 via-zinc-800/30 to-zinc-900/40 backdrop-blur-md border border-zinc-700/30 hover:border-zinc-500/60 transition-all duration-500 cursor-pointer hover:shadow-xl hover:shadow-zinc-500/10 hover:scale-[1.02] relative overflow-hidden">
+            <Link href="/merch" >
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/2 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="flex items-center justify-between relative z-10">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-xl border-2 border-zinc-600 group-hover:border-zinc-400 flex items-center justify-center transition-all duration-300 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <Package className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors relative z-10" />
+                    <div className="absolute inset-0 border-2 border-white/10 rounded-xl scale-0 group-hover:scale-110 transition-transform duration-500 opacity-0 group-hover:opacity-100" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-sm text-white transition-colors">Merch</h3>
+                    <p className="text-xs text-zinc-400 font-light group-hover:text-zinc-300 transition-colors">
+                      Buy my merch.
+                    </p>
+                  </div>
+                </div>
+                <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-white transition-all duration-300 group-hover:translate-x-1" />
+              </div>
+            </Link>
+          </Card>
+          {/* <Card className="group p-4 bg-transparent bg-gradient-to-r from-zinc-900/40 via-zinc-800/30 to-zinc-900/40 backdrop-blur-md border border-zinc-700/30 hover:border-zinc-500/60 transition-all duration-500 cursor-pointer hover:shadow-xl hover:shadow-zinc-500/10 hover:scale-[1.02] relative overflow-hidden">
+            <Link href='/about'>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/2 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="flex items-center justify-between relative z-10">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-xl border-2 border-zinc-600 group-hover:border-zinc-400 flex items-center justify-center transition-all duration-300 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <Sparkles className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors relative z-10" />
+                    <div className="absolute inset-0 border-2 border-white/10 rounded-xl scale-0 group-hover:scale-110 transition-transform duration-500 opacity-0 group-hover:opacity-100" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-sm text-white transition-colors">About</h3>
+                    <p className="text-xs text-zinc-400 font-light group-hover:text-zinc-300 transition-colors">
+                      Everything about me
+                    </p>
+                  </div>
+                </div>
+                <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-white transition-all duration-300 group-hover:translate-x-1" />
+              </div>
+            </Link>
+          </Card> */}
+          <Card className="group p-4 bg-transparent bg-gradient-to-r from-zinc-900/40 via-zinc-800/30 to-zinc-900/40 backdrop-blur-md border border-zinc-700/30 hover:border-zinc-500/60 transition-all duration-500 cursor-pointer hover:shadow-xl hover:shadow-zinc-500/10 hover:scale-[1.02] relative overflow-hidden">
+            <Link href="mailto:amanagarwalx123@gmail.com">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/2 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="flex items-center justify-between relative z-10">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-xl border-2 border-zinc-600 group-hover:border-zinc-400 flex items-center justify-center transition-all duration-300 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <Mail className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors relative z-10" />
+                    <div className="absolute inset-0 border-2 border-white/10 rounded-xl scale-0 group-hover:scale-110 transition-transform duration-500 opacity-0 group-hover:opacity-100" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-sm text-white transition-colors">Contact</h3>
+                    <p className="text-xs text-zinc-400 font-light group-hover:text-zinc-300 transition-colors">
+                      Get in touch via email
+                    </p>
+                  </div>
+                </div>
+                <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-white transition-all duration-300 group-hover:translate-x-1" />
+              </div>
+            </Link>
           </Card>
         </div>
 
@@ -251,9 +328,9 @@ export default function HomePage() {
         </Card>
 
         <div className="text-center mt-12">
-          <p className="text-xs text-zinc-500 font-light">© 2024 Your Name</p>
+          <p className="text-xs text-zinc-500 font-light">© {new Date().getFullYear()} Aman Agarwal</p>
         </div>
       </div>
-    </div>
+    </div >
   )
 }

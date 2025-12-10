@@ -8,15 +8,16 @@ import { Button } from "@/components/ui/button"
 
 const navItems = [
   { name: "writing", href: "/writing" },
+  { name: "notes", href: "/notes" },
   { name: "bookmarks", href: "/bookmarks" },
+  { name: "podcasts", href: "/podcasts" },
   { name: "quotes", href: "/quotes" },
-  { name: "visuals", href: "/visuals" },
+  { name: "photos", href: "/visuals" },
   { name: "books", href: "/books" },
   { name: "products", href: "/products" },
   { name: "open source", href: "/open-source" },
-  { name: "tools", href: "/tools" },
+  { name: "free tools", href: "/tools" },
   { name: "experiments", href: "/experiments" },
-  { name: "about", href: "/about" },
 ]
 
 export default function Navigation() {
